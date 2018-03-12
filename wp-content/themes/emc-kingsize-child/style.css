@@ -1,0 +1,26 @@
+/*
+ Theme Name:   EMC
+ Theme URI:    https://github.com/elpadi/emc-website
+ Description:  KingSize Child Theme
+ Author:       Carlos Padilla
+ Author URI:   http://cpadilla.thejackmag.com
+ Template:     kingsize
+ Version:      1.0.0
+ License:      GNU General Public License v2 or later
+ License URI:  http://www.gnu.org/licenses/gpl-2.0.html
+*/
+
+body div#navContainer {
+	transform: translateY(calc(-100% + 100px));
+	transition: transform 0.2s;
+}
+body div#navContainer.expanded {
+	transform: translateY(0);
+}
+#arrowLink {
+	transform: rotate(180deg);
+	transition: transform 0.2s;
+}
+.expanded #arrowLink {
+	transform: rotate(0deg);
+}
