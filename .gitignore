@@ -1,0 +1,12 @@
+.htaccess
+/index.php
+/wp-config.php
+
+*.tar.bz2
+
+vendor
+
+wordpress
+wp-content/uploads/*
+wp-content/plugins/*
+wp-content/themes/kingsize
