@@ -76,54 +76,19 @@ var EMC_Nav = (function($) {
 			}		
 		});
 		
-		/*
-			To show / hide the desktop navigation on arrow button click ----		
-		*/
 		/**
-		 * EMC EDIT: We'll move most of this to css transition.
-		 *
-		var isUp = false;
-		var navHeight = $('#navContainer').height();
-		var hideHeight = navHeight - 100; 
-
-		$('#arrowLink a').click(function(e){
-			e.preventDefault();
-			navHeight = $('#navContainer').height();
-			hideHeight = navHeight - 100; 
-			
-			$('.tooltip').remove();
-			if(!isUp){			
-				$(this).find('img').attr('src',template_directory+'/images/menu_hide_arrow_bottom.png');
-				$(this).find('img').attr('title',showNav);
-				$( "#navContainer" ).animate({			
-					top: '-='+ hideHeight + 'px'
-				}, 500, "swing", function() {
-					isUp = true;
-				});	
-			}else{
-				$(this).find('img').attr('src',template_directory+'/images/menu_hide_arrow_top.png');
-				$(this).find('img').attr('title',hideNav);
-				$( "#navContainer" ).animate({			
-					top: "0"
-				}, 500, "swing", function() {
-					isUp = false;
-				});				
-
-
-				if($('body').hasClass('body_show_content'))
-				{
-					 $('#mainContainer').fadeIn();	
-				}	
-			}
-		});
-		*/
+		 * EMC EDIT: Move main menu hide/show to css transitions.
+		 */
 		var toggleMainNav = function() {
 			$('#navContainer').toggleClass('expanded');
+			clearTimeout(initialShowTimeoutId);
 		};
 		$('#arrowLink a').on('click', function(e) {
 			e.preventDefault();
 			toggleMainNav();
 		});
+		// expand main menu on window load
+		var initialShowTimeoutId = setTimeout(toggleMainNav, 5000);
 
 		/* AUTO HIDE MENU @ KS */
 		if ($('body').hasClass('body_hiding_menu'))

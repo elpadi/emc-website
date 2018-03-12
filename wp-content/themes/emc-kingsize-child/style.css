@@ -24,3 +24,7 @@ body div#navContainer.expanded {
 .expanded #arrowLink {
 	transform: rotate(0deg);
 }
+
+.page-template-default #mainContainer {
+	margin-top: 80vh;
+}
