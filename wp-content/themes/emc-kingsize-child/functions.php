@@ -6,10 +6,11 @@ add_action( 'wp_enqueue_scripts', function() {
 
 	wp_enqueue_script('emc-forms', get_stylesheet_directory_uri() . "/js/forms.js", ['jquery']);
 	wp_enqueue_script('emc-nav', get_stylesheet_directory_uri() . "/js/nav.js", ['jquery']);
+	wp_enqueue_script('vimeo-player-api', 'https://player.vimeo.com/api/player.js');
 
 	// remove kingsize js
 	wp_dequeue_script('custom');
 	// add our modified version of kingsize custom
-	wp_enqueue_script('emc-custom', get_stylesheet_directory_uri() . "/js/custom.js", ['emc-forms','emc-nav']);
+	wp_enqueue_script('emc-custom', get_stylesheet_directory_uri() . "/js/custom.js", ['emc-forms','emc-nav'], '1.0.0');
 });
 

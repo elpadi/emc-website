@@ -99,7 +99,18 @@
 				if(jQuery('body').hasClass('body_about')){
 					jQuery('body').append('<div class="grid"></div>');		
 				}	
-			});
+				// pause background video on page scroll
+				(function(iframe) {
+					if (!iframe) return;
+					var timeoutId,
+						isPlaying = true,
+						play = function() { (new Vimeo.Player(iframe)).play(); clearTimeout(timeoutId); isPlaying = true; },
+						pause = function() { timeoutId = setTimeout(() => (new Vimeo.Player(iframe)).pause(), 1000); isPlaying = false; };
+					window.addEventListener('scroll', function() {
+						if (isPlaying && window.scrollY) pause();
+						if (!isPlaying && !window.scrollY) play();
+					});
+			})(document.querySelector('.backgroundvimeo iframe'));
 
 			//hide tooltip
 			/*
