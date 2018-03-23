@@ -28,3 +28,26 @@ body div#navContainer.expanded {
 .page-template-default #mainContainer {
 	margin-top: 80vh;
 }
+#mainContainer .container {
+	background: #fff !important;
+}
+
+body div#navContainer {
+	padding: 0;
+}
+#navContainer #bgRepeat {
+	background-color: rgba(255,255,255,0.8) !important;
+	border-style: none;
+}
+#navContainer li h5 {
+	color: #444;
+}
+#navContainer #mainNavigation li {
+	border-style: none;
+}
+#navArrowImg svg {
+	opacity: 0.9;
+}
+#navArrowImg path {
+	fill: #fff;
+}

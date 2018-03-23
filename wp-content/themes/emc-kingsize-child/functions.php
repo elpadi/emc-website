@@ -1,8 +1,24 @@
 <?php
 
+class KingSize_Theme {
+	public static $styles = [
+		'style',
+		'custom',
+		'mobile_navigation',
+		'font-awesome/css/font-awesome.min',
+		'responsive-tables',
+	];
+}
+
 add_action( 'wp_enqueue_scripts', function() {
-	// add parent theme style
+	// add kingsize css files
+	foreach (KingSize_Theme::$styles as $css) {
+		wp_enqueue_style('kingsize-'.basename($css), get_template_directory_uri() . "/css/$css.css", [], '1.0.0' );
+	}
+	// add kingsize main css file
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
+	// add our own main css file
+	wp_enqueue_style( 'emc-style', get_stylesheet_directory_uri() . '/style.css', [], '1.0.0' );
 
 	wp_enqueue_script('foundation');
 	wp_enqueue_script('emc-forms', get_stylesheet_directory_uri() . "/js/forms.js", ['jquery']);

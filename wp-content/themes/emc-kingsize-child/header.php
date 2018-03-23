@@ -24,7 +24,7 @@ $get_options = get_option('wm_theme_settings');
 	<?php
 	$head_include = "";
 	$head_include = $data['wm_head_include'];
-	echo $head_include;
+	//echo $head_include;
 	?>
 	<!-- End Theme setting head include -->
 </head>
@@ -189,7 +189,11 @@ include (get_template_directory() . '/lib/background_video.php');
                 </div>
             </div>
 			
-			<?php
+			<div id="navArrowPart">
+			<div id="navArrowImg"><?php include(__DIR__.'/svg/main-dropdown-bottom.svg'); ?></div>
+					<div id="arrowLink"><a href="#"><img src="<?php echo get_template_directory_uri();?>/images/menu_hide_arrow_top.png" width="48" height="48" alt="" <?php if ( $data['wm_menu_tooltip_enabled'] == "1" ) {?>title="<?php _e( 'Hide the navigation', 'kslang' ); ?>"  class="masterTooltip"<?php }?>></a></div>
+			</div>
+			<?php /*
 			#### Navigation code here #####
             $navClass = "";
             if($data['wm_navigation_shape'] == "Rounded")
@@ -222,7 +226,7 @@ include (get_template_directory() . '/lib/background_video.php');
 				<?php } ?>
             </div>  
             <!-- /New Menu Styles -->
-           <?php endif; ?>
+           <?php endif; */ ?>
               
           </div>
     </div>
