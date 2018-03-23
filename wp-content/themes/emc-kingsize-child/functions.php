@@ -18,7 +18,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	// add kingsize main css file
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
 	// add our own main css file
-	wp_enqueue_style( 'emc-style', get_stylesheet_directory_uri() . '/style.css', [], '1.0.0' );
+	wp_enqueue_style( 'emc-style', get_stylesheet_directory_uri() . '/style.css' );
 
 	wp_enqueue_script('foundation');
 	wp_enqueue_script('emc-forms', get_stylesheet_directory_uri() . "/js/forms.js", ['jquery']);
@@ -84,4 +84,9 @@ add_action('wp_head', function() {
 	} 
 	if( false && $data['wm_custom_css'] ) printf('<style>%s</style>', $data['wm_custom_css']);
 	if( $data['wm_date_enabled'] == '1' ) echo '<style>.blog_post { margin-bottom: 60px; }</style>';
+});
+
+add_action('wp_footer', function() {
+	global $post;
+	if ($post->post_name !== 'ftest') echo '<div class="grid">&nbsp;</div>';
 });

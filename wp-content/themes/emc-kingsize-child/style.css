@@ -51,3 +51,9 @@ body div#navContainer {
 #navArrowImg path {
 	fill: #fff;
 }
+
+body {
+	background-image: none !important;
+}
+body div#navContainer { z-index: 900; }
+body > .grid { z-index: 800; }
