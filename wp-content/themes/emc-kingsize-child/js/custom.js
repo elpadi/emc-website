@@ -218,6 +218,7 @@
 				$('#mainContainer>.container').css('min-height', window.innerHeight);
 			}
 
+			/*
 			//video aspect ratio 31/3/2015
 
 			//https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php
@@ -257,6 +258,12 @@
 
 				// Kick off one resize to fix all videos on page load
 			}).resize();
+			*/
+			(function(iframe) {
+				(new Vimeo.Player(iframe)).on('play', function() {
+					setTimeout(function() { iframe.classList.add('visible') }, 1000);
+				});
+			})(document.querySelector('.backgroundvimeo iframe'));
 		},
 		forms: EMC_Forms,
 		nav: EMC_Nav,

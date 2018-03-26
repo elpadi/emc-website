@@ -191,7 +191,7 @@ include (get_template_directory() . '/lib/background_video.php');
 			
 			<div id="navArrowPart">
 			<div id="navArrowImg"><?php include(__DIR__.'/svg/main-dropdown-bottom.svg'); ?></div>
-					<div id="arrowLink"><a href="#"><img src="<?php echo get_template_directory_uri();?>/images/menu_hide_arrow_top.png" width="48" height="48" alt="" <?php if ( $data['wm_menu_tooltip_enabled'] == "1" ) {?>title="<?php _e( 'Hide the navigation', 'kslang' ); ?>"  class="masterTooltip"<?php }?>></a></div>
+					<div id="arrowLink"><a href="#"><img src="<?php echo get_stylesheet_directory_uri();?>/img/h_logo.png" width="48" height="48" alt=""></a></div>
 			</div>
 			<?php /*
 			#### Navigation code here #####

@@ -21,8 +21,9 @@ add_action( 'wp_enqueue_scripts', function() {
 	wp_enqueue_style( 'emc-style', get_stylesheet_directory_uri() . '/style.css' );
 
 	wp_enqueue_script('foundation');
-	wp_enqueue_script('emc-forms', get_stylesheet_directory_uri() . "/js/forms.js", ['jquery']);
-	wp_enqueue_script('emc-nav', get_stylesheet_directory_uri() . "/js/nav.js", ['jquery']);
+	wp_register_script('vimeo', "https://player.vimeo.com/api/player.js");
+	wp_register_script('emc-forms', get_stylesheet_directory_uri() . "/js/forms.js", ['jquery']);
+	wp_register_script('emc-nav', get_stylesheet_directory_uri() . "/js/nav.js", ['jquery']);
 	/*
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/style.css">
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/custom.css">
@@ -37,7 +38,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	// remove kingsize js
 	wp_dequeue_script('custom');
 	// add our modified version of kingsize custom
-	wp_enqueue_script('emc-custom', get_stylesheet_directory_uri() . "/js/custom.js", ['emc-forms','emc-nav']);
+	wp_enqueue_script('emc-custom', get_stylesheet_directory_uri() . "/js/custom.js", ['vimeo','emc-forms','emc-nav']);
 	
 	if(is_singular()) wp_enqueue_script('comment-reply');
 });
@@ -90,3 +91,10 @@ add_action('wp_footer', function() {
 	global $post;
 	if ($post->post_name !== 'ftest') echo '<div class="grid">&nbsp;</div>';
 });
+
+function _remove_script_version($src) { 
+	$parts = explode('?', $src); 	
+	return $parts[0] . '?v=' . time(); 
+} 
+add_filter( 'script_loader_src', '_remove_script_version', 15, 1 ); 
+add_filter( 'style_loader_src', '_remove_script_version', 15, 1 );

@@ -38,22 +38,77 @@ body div#navContainer {
 #navContainer #bgRepeat {
 	background-color: rgba(255,255,255,0.8) !important;
 	border-style: none;
+	box-shadow: none;
 }
-#navContainer li h5 {
-	color: #444;
+#navContainer #mainNavigation .sub-menu a,
+#navContainer h5 {
+	color: #444 !important;
 }
-#navContainer #mainNavigation li {
-	border-style: none;
+#navContainer li.menu-item-has-children h5 {
+	margin-bottom: 0.4em;
+}
+#navContainer .logo {
+	margin-bottom: 45px;
+}
+#navContainer #mainNavigation ul li {
+	border-style: none !important;
+	background-image: none !important;
 }
 #navArrowImg svg {
-	opacity: 0.9;
+	opacity: 0.8;
 }
 #navArrowImg path {
 	fill: #fff;
 }
+#navContainer #mainNavigation .sub-menu {
+	position: static;
+	display: block;
+	background-color: transparent !important;
+	border-style: none;
+	margin: 0;
+	padding: 0;
+}
+#navContainer #mainNavigation .sub-menu li {
+	margin: 0;
+	padding: 0;
+	text-indent: 1em;
+	line-height: 1.7;
+	width: auto;
+}
+#navContainer #mainNavigation .sub-menu a {
+	padding: 0;
+	width: auto;
+	max-width: none;
+	text-transform: none;
+	font-size: 1.3em !important;
+}
 
-body {
-	background-image: none !important;
+html > body {
+	background: none #fff;
+	min-height: 100vh;
 }
 body div#navContainer { z-index: 900; }
 body > .grid { z-index: 800; }
+
+body > .backgroundvimeo {
+    overflow: hidden;
+}
+body > .backgroundvimeo > iframe {
+	background-color: white;
+	height: 56.25vw;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	width: 177.77777778vh;
+	box-sizing: border-box;
+	min-height: 100%;
+	min-width: 100%;
+	visibility: hidden;
+	opacity: 0;
+	transition: visibility 0s, opacity 0.5s;
+}
+body > .backgroundvimeo > iframe.visible {
+	visibility: visible;
+	opacity: 1;
+}
