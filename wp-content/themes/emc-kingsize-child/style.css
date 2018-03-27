@@ -27,13 +27,17 @@ body div#navContainer.expanded {
 
 .page-template-default #mainContainer {
 	margin-top: 80vh;
+	width: 60%;
+	margin-right: 8.3%;
 }
 #mainContainer .container {
 	background: #fff !important;
+	width: 100%;
 }
 
 body div#navContainer {
 	padding: 0;
+	right: 72.3%;
 }
 #navContainer #bgRepeat {
 	background-color: rgba(255,255,255,0.8) !important;
@@ -88,7 +92,7 @@ html > body {
 	min-height: 100vh;
 }
 body div#navContainer { z-index: 900; }
-body > .grid { z-index: 800; }
+body > .grid { z-index: 800; pointer-events: none; }
 
 body > .backgroundvimeo {
     overflow: hidden;

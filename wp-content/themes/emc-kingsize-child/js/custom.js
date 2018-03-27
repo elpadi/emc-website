@@ -260,6 +260,7 @@
 			}).resize();
 			*/
 			(function(iframe) {
+				if (!iframe) return;
 				(new Vimeo.Player(iframe)).on('play', function() {
 					setTimeout(function() { iframe.classList.add('visible') }, 1000);
 				});
