@@ -81,14 +81,14 @@ var EMC_Nav = (function($) {
 		 */
 		var toggleMainNav = function() {
 			$('#navContainer').toggleClass('expanded');
-			clearTimeout(initialShowTimeoutId);
+			//clearTimeout(initialShowTimeoutId);
 		};
 		$('#arrowLink a').on('click', function(e) {
 			e.preventDefault();
 			toggleMainNav();
 		});
 		// expand main menu on window load
-		var initialShowTimeoutId = setTimeout(toggleMainNav, 5000);
+		//var initialShowTimeoutId = setTimeout(toggleMainNav, 5000);
 
 		/* AUTO HIDE MENU @ KS */
 		if ($('body').hasClass('body_hiding_menu'))

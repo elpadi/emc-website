@@ -98,3 +98,8 @@ function _remove_script_version($src) {
 } 
 add_filter( 'script_loader_src', '_remove_script_version', 15, 1 ); 
 add_filter( 'style_loader_src', '_remove_script_version', 15, 1 );
+
+add_filter('body_class', function($classes) {
+	$classes[] = 'scroll-top';
+	return $classes;
+});
