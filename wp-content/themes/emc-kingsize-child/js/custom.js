@@ -95,54 +95,6 @@
 			// editing padding of parent for grid columns gallery ----
 			$('.columns.grid_columns').parent('.pV0H10').css('padding','0 14px');
 
-			var updateBodyScrollClass = function() {
-				$(document.body).toggleClass('scroll-top', window.scrollY == 0);
-			};
-			$(window).load(function() {	
-				if(jQuery('body').hasClass('body_about')){
-					jQuery('body').append('<div class="grid"></div>');		
-				}	
-				// pause background video on page scroll
-				(function(videoContainer) {
-					if (!videoContainer || !videoContainer.children.length) return;
-					var iframe = videoContainer && videoContainer.children.length ? videoContainer.children[0] : null;
-					var timeoutId,
-						wasScrolledTop,
-						isPlaying,
-						play = function() { isPlaying !== true && iframe && (new Vimeo.Player(iframe)).play(); isPlaying = true; },
-						pause = function() { isPlaying !== false && iframe && (new Vimeo.Player(iframe)).pause(); isPlaying = false; };
-					var onScrollDown = function() {
-						pause();
-						document.getElementById('navContainer').classList.add('expanded');
-					};
-					var onScrollUp = function() {
-						play();
-						document.getElementById('navContainer').classList.remove('expanded');
-					};
-					var onScroll = function() {
-						var isScrolledTop = window.scrollY < window.innerHeight / 2;
-						if (wasScrolledTop !== true && isScrolledTop) onScrollUp();
-						if (wasScrolledTop !== false && !isScrolledTop) onScrollDown();
-						wasScrolledTop = isScrolledTop;
-					};
-					window.addEventListener('scroll', onScroll);
-					setTimeout(function() {
-						var isScrolledTop = window.scrollY < window.innerHeight / 2;
-						iframe.classList.add('visible');
-						if (wasScrolledTop !== true && isScrolledTop) {
-							window.scrollTo(0, 0);
-							play();
-						}
-						else {
-							pause();
-						}
-						wasScrolledTop = isScrolledTop;
-					}, 1500);
-				})(document.querySelector('.backgroundvimeo'));
-
-				window.addEventListener('scroll', updateBodyScrollClass);
-				updateBodyScrollClass();
-			});
 
 			//hide tooltip
 			/*
@@ -251,16 +203,6 @@
 				$(this).prop('title', $(this).data('orig-title'));
 			});
 
-			jQuery(window).resize(resizeCustom);
-			function resizeCustom(){
-				/*if($('#mainContainer>.container').height() <= window.innerHeight){
-			$('#mainContainer').height('100%');	
-		}else{
-			$('#mainContainer').height('auto');	
-		}*/
-				$('#mainContainer>.container').css('min-height', window.innerHeight);
-			}
-
 			/*
 			//video aspect ratio 31/3/2015
 
@@ -304,6 +246,7 @@
 			*/
 		},
 		forms: EMC_Forms,
+		scroll: EMC_ContentScroll,
 		nav: EMC_Nav,
 		contact: function() {	
 			//CONTACT PAGE MAP - CHANGE OPACITY ON HOVER
