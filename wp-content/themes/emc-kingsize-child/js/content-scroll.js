@@ -1,13 +1,14 @@
 var EMC_ContentScroll = (function($) {
-	var Video = (function(videoContainer) {
+	var Video, Scroll;
+	var initVideo = function(videoContainer) {
 		if (!videoContainer || !videoContainer.children.length) return;
 		var iframe = videoContainer && videoContainer.children.length ? videoContainer.children[0] : null;
 		var isPlaying,
 			play = function() { isPlaying !== true && iframe && (new Vimeo.Player(iframe)).play(); isPlaying = true; },
 			pause = function() { isPlaying !== false && iframe && (new Vimeo.Player(iframe)).pause(); isPlaying = false; };
-		return { play: play, pause: pause };
-	})(document.querySelector('.backgroundvimeo'));
-	var Scroll = (function() {
+		Video = { play: play, pause: pause, iframe: iframe };
+	};
+	var initScroll = function() {
 		var wasScrolledTop;
 		var onScrollDown = function() {
 			Video && Video.pause();
@@ -32,7 +33,8 @@ var EMC_ContentScroll = (function($) {
 			window[('smoothScrollTo' in window) ? 'smoothScrollTo' : 'scrollTo'](0, y);
 		};
 		setTimeout(function() {
-			iframe.classList.add('visible');
+			Video && Video.iframe.classList.add('visible');
+			console.log(Video);
 			if (wasScrolledTop !== true && isScrolledTop()) {
 				if (window.scrollY) scrollTo(0);
 				Video && Video.play();
@@ -41,15 +43,17 @@ var EMC_ContentScroll = (function($) {
 				Video && Video.pause();
 			}
 			wasScrolledTop = isScrolledTop();
-			return { onScroll: onScroll, isScrolledTop: isScrolledTop, scrollTo: scrollTo };
 		}, 1500);
-	})(document.querySelector('.backgroundvimeo'));
+		Scroll = { onScroll: onScroll, isScrolledTop: isScrolledTop, scrollTo: scrollTo };
+	};
 	return function initContentScroll() {
 		$(window).load(function() {	
 			$(document.body).toggleClass('scroll-top', window.scrollY == 0);
 			document.getElementById('scroll-button').addEventListener('click', function(e) {
 				Scroll.scrollTo(Scroll.isScrolledTop() ? window.innerHeight : 0);
 			});
+			initVideo(document.querySelector('.backgroundvimeo'));
+			initScroll();
 			window.addEventListener('scroll', Scroll.onScroll);
 		});
 	};

@@ -148,7 +148,7 @@
 		},500);*/
 			//});
 
-			resizeCustom();
+			//resizeCustom();
 			// to make the 50% columns clear left---
 
 			$('div.clearColumn').each(function(i){

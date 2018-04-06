@@ -92,8 +92,8 @@ add_action('wp_footer', function() {
 	global $post;
 	if ($post->post_name !== 'ftest') echo '<div class="grid">&nbsp;</div>';
 	printf(
-		'<button id="scroll-button" class="plain orange-bg">
-			<img class="icon" src="%s">/svg/scroll-arrow.svg" alt="">
+		'<button id="scroll-button" class="plain">
+			<img class="icon" src="%s/svg/scroll-arrow.svg" alt="">
 		</button>', get_stylesheet_directory_uri()
 	);
 });
