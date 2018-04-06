@@ -1,0 +1,24 @@
+{
+  "name": "elpadi/emc-base-code",
+  "description": "Base code for EMC wordpress website.",
+  "keywords": [
+    "wordpress",
+    "blog",
+    "cms"
+  ],
+  "type": "package",
+  "homepage": "http://migration.hemi.press/",
+  "license": "GPL-2.0+",
+  "authors": [
+    {
+      "name": "Carlos Padilla",
+      "homepage": "http://github.com/elpadi/"
+    }
+  ],
+	"autoload": {
+		"psr-4": {
+			"MustUsePlugin\\": "stdlib/",
+			"EMC\\": "emc/"
+		}
+	}
+}

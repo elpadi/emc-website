@@ -11,4 +11,3 @@ wp-content/uploads/*
 wp-content/plugins/*
 wp-content/themes/kingsize
 *.remote
-wp-content/mu-plugins
