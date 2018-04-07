@@ -96,6 +96,11 @@ add_action('wp_footer', function() {
 			<img class="icon" src="%s/svg/scroll-arrow.svg" alt="">
 		</button>', get_stylesheet_directory_uri()
 	);
+	switch (basename(get_page_template(), '.php')) {
+	case 'map':
+		echo '<div class="backgroundmap"><iframe src="https://snazzymaps.com/embed/62070" width="100%" height="600px" style="border:none;"></iframe></div>';
+		break;
+	}
 });
 
 function _remove_script_version($src) { 
@@ -106,6 +111,8 @@ add_filter( 'script_loader_src', '_remove_script_version', 15, 1 );
 add_filter( 'style_loader_src', '_remove_script_version', 15, 1 );
 
 add_filter('body_class', function($classes) {
+	global $post;
 	$classes[] = 'scroll-top';
+	if ($post->post_name === 'map') $classes[] = 'no-content';
 	return $classes;
 });

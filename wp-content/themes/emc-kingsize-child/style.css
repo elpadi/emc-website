@@ -47,12 +47,13 @@
 	transform: rotate(180deg);
 	transition: transform 0.2s;
 	cursor: pointer;
+	display: none;
 }
 .scroll-top #scroll-button {
 	transform: rotate(0deg);
 }
-body.home #scroll-button {
-	display: none;
+.page-template-video #scroll-button {
+	display: block;
 }
 
 #mainContainer,
@@ -81,6 +82,18 @@ body div#navContainer.expanded {
 	margin-top: 80vh;
 	width: calc(100vw - 480px);
 	margin-right: 80px;
+}
+body.no-content #mainContainer,
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+    white-space: nowrap; /* 1 */
 }
 .page-template-video #mainContainer {
 	margin-top: 100vh;
@@ -166,6 +179,14 @@ body div#navContainer { z-index: 900; }
 body div#mainContainer { z-index: 850; position: relative; }
 body > .grid { z-index: 800; pointer-events: none; }
 
+body > .backgroundmap {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+}
 body > .backgroundvimeo {
     overflow: hidden;
 }
