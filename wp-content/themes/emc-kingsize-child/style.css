@@ -52,6 +52,7 @@
 .scroll-top #scroll-button {
 	transform: rotate(0deg);
 }
+.page-template-video-section #scroll-button,
 .page-template-video #scroll-button {
 	display: block;
 }
@@ -79,10 +80,12 @@ body div#navContainer.expanded {
 */
 
 #mainContainer {
-	margin-top: 80vh;
+	margin-top: 0;
 	width: calc(100vw - 480px);
 	margin-right: 80px;
 }
+.page-template-video-section #mainContainer { margin-top: calc(100vh - 110px); }
+.page-template-video #mainContainer { margin-top: 100vh; }
 body.no-content #mainContainer,
 .visuallyhidden {
     border: 0;
@@ -94,9 +97,6 @@ body.no-content #mainContainer,
     position: absolute;
     width: 1px;
     white-space: nowrap; /* 1 */
-}
-.page-template-video #mainContainer {
-	margin-top: 100vh;
 }
 #mainContainer .container {
 	background: rgba(255,255,255,1) !important;
