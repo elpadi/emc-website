@@ -84,8 +84,15 @@ body div#navContainer.expanded {
 	width: calc(100vw - 480px);
 	margin-right: 80px;
 }
-.page-template-video-section #mainContainer { margin-top: calc(100vh - 110px); }
+.page-template-map #mainContainer, .page-template-video-section #mainContainer { margin-top: calc(100vh - 110px); }
+.page-template-map.scroll-top #mainContainer .container, .page-template-video-section.scroll-top #mainContainer .container {
+	background: rgba(255,255,255,0) !important;
+}
+.page-template-map.scroll-top #mainContainer h2.title-page, .page-template-video-section.scroll-top #mainContainer h2.title-page {
+	color: white;
+}
 .page-template-video #mainContainer { margin-top: 100vh; }
+
 body.no-content #mainContainer,
 .visuallyhidden {
     border: 0;
@@ -98,6 +105,7 @@ body.no-content #mainContainer,
     width: 1px;
     white-space: nowrap; /* 1 */
 }
+
 #mainContainer .container {
 	background: rgba(255,255,255,1) !important;
 	width: 100%;
@@ -108,9 +116,6 @@ body.no-content #mainContainer,
 body.scroll-top #mainContainer .container {
 	box-shadow: none;
 	border-color: transparent !important;
-}
-body.scroll-top #mainContainer .container {
-	background: rgba(255,255,255,0.8) !important;
 }
 
 body div#navContainer {
@@ -210,7 +215,7 @@ body > .backgroundvimeo > iframe.visible {
 }
 
 #mainContainer h3,
-body:not(.scroll-top) #mainContainer h2.title-page {
+#mainContainer h2.title-page {
 	color: black;
 }
 #mainContainer h2.title-page {
@@ -222,6 +227,13 @@ body:not(.scroll-top) #mainContainer h2.title-page {
 #mainContainer p {
 	color: black;
 }
+
+.video-listing {
+	display: grid;
+	grid-gap: 16px;
+	grid-template-columns: repeat(2, 2fr);
+}
+
 
 /*Lex's CSS*/
 

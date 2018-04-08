@@ -13,4 +13,18 @@ class VimeoGridShortcode extends Shortcode {
 		];
 	}
 
+	protected function vimeo_video_listing($atts, $content, $name) {
+		global $video_query;
+		$args = array(
+			'meta_key'   => '_wp_page_template',
+			'meta_value' => 'templates/video.php',
+			'post_type'  => 'page',
+		);
+		$video_query = new \WP_Query( $args );
+		ob_start();
+		get_template_part('templates/video-listing'/*, string $name = null */);
+		wp_reset_postdata();
+		return ob_get_clean();
+	}
+
 }

@@ -27,7 +27,7 @@ class Shortcode {
 		return call_user_func([$this, is_callable([$this, $name]) ? $name : 'getContent'], $attributes, $content, $name);
 	}
 
-	protected function getContent($atts, $content, $name) {
+	public function getContent($atts, $content, $name) {
 		return "$name / $content / ".var_export($atts, true);
 	}
 

@@ -98,7 +98,7 @@ add_action('wp_footer', function() {
 	);
 	switch (basename(get_page_template(), '.php')) {
 	case 'map':
-		echo '<div class="backgroundmap"><iframe src="https://snazzymaps.com/embed/62070" width="100%" height="600px" style="border:none;"></iframe></div>';
+		echo '<div class="backgroundmap"><iframe src="https://snazzymaps.com/embed/62070" width="100%" height="100%" style="border:none;"></iframe></div>';
 		break;
 	}
 });
@@ -113,6 +113,6 @@ add_filter( 'style_loader_src', '_remove_script_version', 15, 1 );
 add_filter('body_class', function($classes) {
 	global $post;
 	$classes[] = 'scroll-top';
-	if ($post->post_name === 'map') $classes[] = 'no-content';
+	if (is_front_page() || $post->post_name === 'map') $classes[] = 'no-content';
 	return $classes;
 });
