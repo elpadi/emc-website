@@ -6,7 +6,7 @@
 			<a href="<?php the_permalink(); ?>"><?php echo get_the_post_thumbnail($video_post, 'large'); ?></a>
 			<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 		</header>
-		<main><a href="<?php the_permalink(); ?>"><?php the_excerpt(); ?></a></main>
+		<main><?php the_excerpt(); ?></main>
 	</article>
 	<?php endwhile; ?>
 </div>

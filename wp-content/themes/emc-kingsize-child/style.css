@@ -83,8 +83,17 @@ body div#navContainer.expanded {
 	margin-top: 0;
 	width: calc(100vw - 480px);
 	margin-right: 80px;
+	opacity: 0;
+	transition: opacity 2s;
 }
-.page-template-map #mainContainer, .page-template-video-section #mainContainer { margin-top: calc(100vh - 110px); }
+body.page-loaded #mainContainer {
+	opacity: 1;
+}
+.page-template-map #mainContainer, .page-template-video-section #mainContainer {
+	/* margin-top: calc(100vh - 110px); */
+	background: rgba(255,255,255,0) !important;
+}
+/*
 .page-template-map.scroll-top #mainContainer .container, .page-template-video-section.scroll-top #mainContainer .container {
 	background: rgba(255,255,255,0) !important;
 }
@@ -95,6 +104,7 @@ body div#navContainer.expanded {
 .page-template-map.scroll-top #mainContainer .container > .row:not(.header) {
 	opacity: 0;
 }
+*/
 .page-template-video #mainContainer { margin-top: 100vh; }
 
 body.no-content #mainContainer,
@@ -242,11 +252,33 @@ body > .backgroundvimeo > iframe.visible {
 
 .video-listing {
 	display: grid;
-	grid-gap: 24px;
-	grid-template-columns: repeat(2, 2fr);
+	grid-gap: 48px 24px;
+	grid-template-columns: repeat(2, minmax(100px, 2fr));
+	margin-bottom: 48px;
+}
+.video-listing article {
+	position: relative;
 }
 .video-listing main {
-	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: calc(100% - 3.2em);
+	padding: 12px;
+	opacity: 0;
+	transition: opacity 0.3s;
+	pointer-events: none;
+	display: flex;
+	align-items: center;
+}
+.video-listing header:hover + main {
+	opacity: 1;
+}
+
+.video-listing p {
+	color: white !important;
+	margin: 0;
 }
 .video-listing header > a {
 	display: block;
@@ -255,11 +287,23 @@ body > .backgroundvimeo > iframe.visible {
 .video-listing img {
 	width: 100%;
 	display: block;
-	opacity: 0.7;
-	transition: opacity 0.2s;
+	opacity: 1;
+	transition: opacity 0.3s;
+	transform: translateZ(0);
 }
 .video-listing img:hover {
-	opacity: 1;
+	opacity: 0.7;
+}
+.video-listing h2 {
+	color: black !important;
+	font-size: 24px !important;
+	margin-bottom: 0;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+.video-listing h2 a {
+	color: inherit !important;
 }
 
 

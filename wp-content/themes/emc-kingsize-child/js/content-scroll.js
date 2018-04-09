@@ -48,7 +48,7 @@ var EMC_ContentScroll = (function($) {
 	};
 	return function initContentScroll() {
 		$(window).load(function() {	
-			$(document.body).toggleClass('scroll-top', window.scrollY == 0);
+			$(document.body).addClass('page-loaded').toggleClass('scroll-top', window.scrollY == 0);
 			document.getElementById('scroll-button').addEventListener('click', function(e) {
 				Scroll.scrollTo(Scroll.isScrolledTop() ? window.innerHeight : 0);
 			});
