@@ -91,6 +91,10 @@ body div#navContainer.expanded {
 .page-template-map.scroll-top #mainContainer h2.title-page, .page-template-video-section.scroll-top #mainContainer h2.title-page {
 	color: white;
 }
+.page-template-video-section.scroll-top #mainContainer .container > .row:not(.header),
+.page-template-map.scroll-top #mainContainer .container > .row:not(.header) {
+	opacity: 0;
+}
 .page-template-video #mainContainer { margin-top: 100vh; }
 
 body.no-content #mainContainer,
@@ -116,6 +120,10 @@ body.no-content #mainContainer,
 body.scroll-top #mainContainer .container {
 	box-shadow: none;
 	border-color: transparent !important;
+}
+#mainContainer .container > .row {
+	opacity: 1;
+	transition: opacity 0.3s;
 }
 
 body div#navContainer {
