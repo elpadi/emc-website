@@ -188,7 +188,7 @@ html > body {
 	background: none #fff;
 	min-height: 100vh;
 }
-body div#navContainer { z-index: 900; }
+body div#navContainer, #scroll-button { z-index: 900; }
 body div#mainContainer { z-index: 850; position: relative; }
 body > .grid { z-index: 800; pointer-events: none; }
 
@@ -235,17 +235,38 @@ body > .backgroundvimeo > iframe.visible {
 #mainContainer p {
 	color: black;
 }
+#mainContainer a:hover {
+	color: #d2d2d2;
+	text-decoration: underline;
+}
 
 .video-listing {
 	display: grid;
-	grid-gap: 16px;
+	grid-gap: 24px;
 	grid-template-columns: repeat(2, 2fr);
 }
+.video-listing main {
+	display: none;
+}
+.video-listing header > a {
+	display: block;
+	background-color: black;
+}
+.video-listing img {
+	width: 100%;
+	display: block;
+	opacity: 0.7;
+	transition: opacity 0.2s;
+}
+.video-listing img:hover {
+	opacity: 1;
+}
+
 
 
 /*Lex's CSS*/
 
 #mainContainer p{font-family: 'Fira Sans', sans-serif!important; font-weight: 400!important; font-size: 1.5em!important;}
 .byline{font-size: 2em; color: #666; font-style: italic; margin-bottom: 0.5em;}
-#mainContainer h2.title-page{font-family: 'Fira Sans', sans-serif!important; font-weight: 400!important; font-size: 5.5em!important;margin-bottom: 0.1em!important;}
+#mainContainer h2.title-page{font-family: 'Fira Sans', sans-serif!important; font-weight: 400!important; font-size: 5.5em!important;margin: 0.2em 0 0.4em !important;}
 .dropcap{font-family: 'Fira Sans', sans-serif!important; font-weight: 800!important; font-size: 8em!important; color: #ee3a39; float:left; display: block; margin: 0 0.2em 0.1em 0;}
