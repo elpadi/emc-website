@@ -255,10 +255,15 @@ body > .backgroundvimeo > iframe.visible {
 }
 .video-listing > header form {
 	display: flex;
-	justify-content: space-between;
+	flex-wrap: wrap;
 }
 .video-listing > header button {
 	cursor: pointer;
+	white-space: nowrap;
+	padding: 0.5em;
+	margin: 0.5em 0.5em 0.5em 0;
+	color: #aaa;
+	text-transform: capitalize;
 }
 .video-listing > header button.selected {
 	color: black;
@@ -324,7 +329,28 @@ body > .backgroundvimeo > iframe.visible {
 	color: inherit !important;
 }
 
-
+/*
+button.radio {
+}
+button.radio::before {
+	content: '\26aa';
+	padding: 1px 2px 2px 2px;
+	text-align: center;
+	border: 3px solid black;
+	border-radius: 50%;
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+	color: white;
+	font-size: 0.8em;
+	margin-right: 5px;
+	box-sizing: border-box;
+}
+button.radio.selected::before {
+	content: '\26ab';
+	color: black;
+}
+*/
 
 /*Lex's CSS*/
 
