@@ -90,7 +90,7 @@ body.page-loaded #mainContainer {
 	opacity: 1;
 }
 .page-template-map #mainContainer, .page-template-video-section #mainContainer {
-	/* margin-top: calc(100vh - 110px); */
+	margin-top: 100vh;
 	background: rgba(255,255,255,0) !important;
 }
 /*
@@ -135,6 +135,9 @@ body.scroll-top #mainContainer .container {
 	opacity: 1;
 	transition: opacity 0.3s;
 }
+#mainContainer .container > footer.row {
+	display: none;
+}
 
 body div#navContainer {
 	padding: 0;
@@ -148,6 +151,11 @@ body div#navContainer {
 #navContainer #mainNavigation .sub-menu a,
 #navContainer h5 {
 	color: #444 !important;
+	white-space: nowrap;
+}
+#navContainer .sub-menu a:hover,
+#navContainer a:hover > h5 {
+	font-weight: bold;
 }
 #navContainer li.menu-item-has-children h5 {
 	margin-bottom: 0.4em;
@@ -265,6 +273,7 @@ body > .backgroundvimeo > iframe.visible {
 	color: #aaa;
 	text-transform: capitalize;
 }
+.video-listing > header button:hover,
 .video-listing > header button.selected {
 	color: black;
 }
@@ -352,9 +361,17 @@ button.radio.selected::before {
 }
 */
 
+#supersized-loader {
+	display: none !important;
+}
+
 /*Lex's CSS*/
 
 #mainContainer p{font-family: 'Fira Sans', sans-serif!important; font-weight: 400!important; font-size: 1.5em!important;}
 .byline{font-size: 2em; color: #666; font-style: italic; margin-bottom: 0.5em;}
 #mainContainer h2.title-page{font-family: 'Fira Sans', sans-serif!important; font-weight: 400!important; font-size: 5.5em!important;margin: 0.2em 0 0.4em !important;}
 .dropcap{font-family: 'Fira Sans', sans-serif!important; font-weight: 800!important; font-size: 8em!important; color: #ee3a39; float:left; display: block; margin: 0 0.2em 0.1em 0;}
+.section_title{font-family: 'Fira Sans', sans-serif!important; font-weight: 400!important; font-size: 3.5em!important; color: #000!important;margin-bottom: 0.6em;}
+#mainContainer .video-listing a{font-family: 'Fira Sans', sans-serif!important; font-weight: 400!important; font-size: 1.0em!important; text-align: center!important; color: #000!important;}
+.tag_desc{font-family: 'Fira Sans', sans-serif!important; font-weight: 600!important; font-size: 1.5em!important; color: #000;}
+.video-listing > header form{line-height: 0.5em!important;}

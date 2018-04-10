@@ -53,9 +53,21 @@ var EMC_ContentScroll = (function($) {
 		}, 1500);
 		Scroll = { onScroll: onScroll, isScrolledTop: isScrolledTop, scrollTo: scrollTo };
 	};
+	var isScrollingTemplate = function() {
+		let classes = document.body.className.split(' ');
+		let templates = ['video-section','map'].map(s => 'page-template-' + s);
+		return templates.some(t => classes.includes(t));
+	};
 	return function initContentScroll() {
 		$(window).load(function() {	
-			$(document.body).addClass('page-loaded').toggleClass('scroll-top', window.scrollY == 0);
+			setTimeout(function() {
+				document.body.classList.add('page-loaded');
+				if (isScrollingTemplate()) {
+					document.getElementById('navContainer').classList.add('expanded');
+					if (window.scrollY < window.innerHeight) window.scrollTo(0, window.innerHeight);
+				}
+			}, 3000);
+			$(document.body).toggleClass('scroll-top', window.scrollY == 0);
 			document.getElementById('scroll-button').addEventListener('click', function(e) {
 				Scroll.scrollTo(Scroll.isScrolledTop() ? window.innerHeight : 0);
 			});

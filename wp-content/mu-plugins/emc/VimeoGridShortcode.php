@@ -18,7 +18,10 @@ class VimeoGridShortcode extends Shortcode {
 		$args = array(
 			'meta_key'   => '_wp_page_template',
 			'meta_value' => 'templates/video.php',
+			'order' => 'ASC',
+			'orderby' => 'title',
 			'post_type'  => 'page',
+			'posts_per_page' => -1,
 		);
 		$video_query = new \WP_Query( $args );
 		ob_start();
