@@ -24,6 +24,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	wp_register_script('vimeo', "https://player.vimeo.com/api/player.js");
 	wp_register_script('emc-forms', get_stylesheet_directory_uri() . "/js/forms.js", ['jquery']);
 	wp_register_script('emc-nav', get_stylesheet_directory_uri() . "/js/nav.js", ['jquery']);
+	wp_register_script('emc-listing', get_stylesheet_directory_uri() . "/js/listing.js", ['jquery']);
 	wp_register_script('emc-scroll', get_stylesheet_directory_uri() . "/js/content-scroll.js", ['jquery']);
 	/*
     <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/style.css">
@@ -39,7 +40,7 @@ add_action( 'wp_enqueue_scripts', function() {
 	// remove kingsize js
 	wp_dequeue_script('custom');
 	// add our modified version of kingsize custom
-	wp_enqueue_script('emc-custom', get_stylesheet_directory_uri() . "/js/custom.js", ['vimeo','emc-forms','emc-nav','emc-scroll']);
+	wp_enqueue_script('emc-custom', get_stylesheet_directory_uri() . "/js/custom.js", ['vimeo','emc-forms','emc-nav','emc-scroll','emc-listing']);
 	
 	if(is_singular()) wp_enqueue_script('comment-reply');
 });

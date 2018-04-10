@@ -247,6 +247,7 @@
 		},
 		forms: EMC_Forms,
 		scroll: EMC_ContentScroll,
+		listing: EMC_Listing,
 		nav: EMC_Nav,
 		contact: function() {	
 			//CONTACT PAGE MAP - CHANGE OPACITY ON HOVER

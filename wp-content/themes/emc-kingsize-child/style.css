@@ -251,15 +251,30 @@ body > .backgroundvimeo > iframe.visible {
 }
 
 .video-listing {
+	margin-bottom: 48px;
+}
+.video-listing > header form {
+	display: flex;
+	justify-content: space-between;
+}
+.video-listing > header button {
+	cursor: pointer;
+}
+.video-listing > header button.selected {
+	color: black;
+}
+.video-listing > main {
 	display: grid;
 	grid-gap: 48px 24px;
 	grid-template-columns: repeat(2, minmax(100px, 2fr));
-	margin-bottom: 48px;
 }
 .video-listing article {
 	position: relative;
 }
-.video-listing main {
+.video-listing article.disabled {
+	display: none;
+}
+.video-listing article > main {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -272,7 +287,7 @@ body > .backgroundvimeo > iframe.visible {
 	display: flex;
 	align-items: center;
 }
-.video-listing header:hover + main {
+.video-listing article header:hover + main {
 	opacity: 1;
 }
 
@@ -284,14 +299,17 @@ body > .backgroundvimeo > iframe.visible {
 	display: block;
 	background-color: black;
 }
-.video-listing img {
+#mainContainer .video-listing a:hover {
+	text-decoration: none;
+}
+.video-listing article img {
 	width: 100%;
 	display: block;
 	opacity: 1;
 	transition: opacity 0.3s;
 	transform: translateZ(0);
 }
-.video-listing img:hover {
+.video-listing article:hover img {
 	opacity: 0.7;
 }
 .video-listing h2 {

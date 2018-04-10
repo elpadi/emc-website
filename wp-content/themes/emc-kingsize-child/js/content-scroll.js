@@ -1,3 +1,11 @@
+/**
+ * Show / hide the main content, and the main navigation
+ * when the user scrolls up to the top of the page
+ * or down to read the content.
+ *
+ * Also pause or resume the background videos based on
+ * scroll position.
+ */
 var EMC_ContentScroll = (function($) {
 	var Video, Scroll;
 	var initVideo = function(videoContainer) {
@@ -34,7 +42,6 @@ var EMC_ContentScroll = (function($) {
 		};
 		setTimeout(function() {
 			Video && Video.iframe.classList.add('visible');
-			console.log(Video);
 			if (wasScrolledTop !== true && isScrolledTop()) {
 				if (window.scrollY) scrollTo(0);
 				Video && Video.play();
