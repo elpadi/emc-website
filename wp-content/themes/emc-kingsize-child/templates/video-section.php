@@ -1,2 +1,2 @@
 <?php /* Template Name: Video Section */
-include(get_template_directory() . '/page.php');
+include(get_stylesheet_directory() . '/page.php');

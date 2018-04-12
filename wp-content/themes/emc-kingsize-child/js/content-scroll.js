@@ -55,7 +55,7 @@ var EMC_ContentScroll = (function($) {
 	};
 	var isScrollingTemplate = function() {
 		let classes = document.body.className.split(' ');
-		let templates = ['video-section','map'].map(s => 'page-template-' + s);
+		let templates = ['default','video-section','map'].map(s => 'page-template-' + s);
 		return templates.some(t => classes.includes(t));
 	};
 	return function initContentScroll() {
@@ -66,7 +66,7 @@ var EMC_ContentScroll = (function($) {
 					document.getElementById('navContainer').classList.add('expanded');
 					if (window.scrollY < window.innerHeight) window.scrollTo(0, window.innerHeight);
 				}
-			}, 3000);
+			}, 1000);
 			$(document.body).toggleClass('scroll-top', window.scrollY == 0);
 			document.getElementById('scroll-button').addEventListener('click', function(e) {
 				Scroll.scrollTo(Scroll.isScrolledTop() ? window.innerHeight : 0);
