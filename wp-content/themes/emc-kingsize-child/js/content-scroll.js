@@ -15,6 +15,9 @@ var EMC_ContentScroll = (function($) {
 			play = function() { isPlaying !== true && iframe && (new Vimeo.Player(iframe)).play(); isPlaying = true; },
 			pause = function() { isPlaying !== false && iframe && (new Vimeo.Player(iframe)).pause(); isPlaying = false; };
 		Video = { play: play, pause: pause, iframe: iframe };
+		if (iframe && location.pathname === '/') {
+			(new Vimeo.Player(iframe)).on('ended', function() { location = location.href + 'our-project'; });
+		}
 	};
 	var initScroll = function() {
 		var wasScrolledTop;
@@ -61,6 +64,7 @@ var EMC_ContentScroll = (function($) {
 	return function initContentScroll() {
 		$(window).load(function() {	
 			setTimeout(function() {
+				initVideo(document.querySelector('.backgroundvimeo'));
 				document.body.classList.add('page-loaded');
 				if (isScrollingTemplate()) {
 					document.getElementById('navContainer').classList.add('expanded');
@@ -71,7 +75,6 @@ var EMC_ContentScroll = (function($) {
 			document.getElementById('scroll-button').addEventListener('click', function(e) {
 				Scroll.scrollTo(Scroll.isScrolledTop() ? window.innerHeight : 0);
 			});
-			initVideo(document.querySelector('.backgroundvimeo'));
 			initScroll();
 			window.addEventListener('scroll', Scroll.onScroll);
 		});

@@ -13,19 +13,43 @@ class VimeoGridShortcode extends Shortcode {
 		];
 	}
 
-	protected function vimeo_video_listing($atts, $content, $name) {
-		global $video_query;
-		$args = array(
+	protected function getAllVideosArguments() {
+		return [
 			'meta_key'   => '_wp_page_template',
 			'meta_value' => 'templates/video.php',
+		];
+	}
+
+	protected function getAlbumVideosArguments($album) {
+		$videos_query = new \WP_Query([
+			'post_type' => 'vimeo-video',
+			'posts_per_page' => -1,
+			'tax_query' => [['taxonomy' => 'vimeo-videos', 'field' => 'name', 'terms' => $album]],
+		]);
+		return [
+			'meta_key'   => 'vimeo_video_post',
+			'meta_value' => implode(',', array_map(function($p) { return $p->ID; }, $videos_query->posts)),
+			'meta_compare' => 'IN',
+		];
+	}
+
+	protected function vimeo_video_listing($atts, $content, $name) {
+		global $video_query;
+		ob_start();
+		extract($atts);
+		if (isset($album) && !empty($album)) {
+			$args = $this->getAlbumVideosArguments($album);
+		}
+		else {
+			$args = $this->getAllVideosArguments();
+		}
+		$video_query = new \WP_Query(array_merge($args, [
 			'order' => 'ASC',
 			'orderby' => 'title',
 			'post_type'  => 'page',
 			'posts_per_page' => -1,
-		);
-		$video_query = new \WP_Query( $args );
-		ob_start();
-		get_template_part('templates/video-listing'/*, string $name = null */);
+		]));
+		get_template_part('templates/video-listing');
 		wp_reset_postdata();
 		return ob_get_clean();
 	}
