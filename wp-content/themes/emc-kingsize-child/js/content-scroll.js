@@ -57,9 +57,10 @@ var EMC_ContentScroll = (function($) {
 		Scroll = { onScroll: onScroll, isScrolledTop: isScrolledTop, scrollTo: scrollTo };
 	};
 	var isScrollingTemplate = function() {
-		let classes = document.body.className.split(' ');
+		let classes = document.body.classList;
+		if (classes.contains('home')) return false;
 		let templates = ['default','video-section','map'].map(s => 'page-template-' + s);
-		return templates.some(t => classes.includes(t));
+		return templates.some(t => classes.contains(t));
 	};
 	return function initContentScroll() {
 		$(window).load(function() {	

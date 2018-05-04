@@ -82,6 +82,7 @@ body div#navContainer.expanded {
 #mainContainer {
 	margin-top: 0;
 	width: calc(100vw - 410px);
+	max-width: 900px;
 	margin-right: 80px;
 	opacity: 0;
 	transition: opacity 2s;
@@ -369,6 +370,18 @@ button.radio.selected::before {
 
 .breadcrumbs {
 	display: none;
+}
+
+@media (min-width: 1200px) {
+	body div#navContainer {
+		left: auto;
+		right: calc(50% + 450px);
+		margin-right: -100px;
+	}
+	#mainContainer {
+		margin-right: auto;
+		left: 140px;
+	}
 }
 
 /*Lex's CSS*/
