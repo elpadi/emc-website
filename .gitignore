@@ -2,12 +2,17 @@
 /index.php
 /wp-config.php
 
+*.remote
+*.bak
 *.tar.bz2
 
 vendor
 
 wordpress
 wp-content/uploads/*
+
 wp-content/plugins/*
+!wp-content/plugins/vimeo-video-post-updater
+
 wp-content/themes/kingsize
-*.remote
+
