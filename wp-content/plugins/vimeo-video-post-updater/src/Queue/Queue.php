@@ -19,10 +19,18 @@ class Queue {
 				$instance->append($ids);
 		}
 
+		public function getPostsInQueue() {
+				return get_option($this->optionName, []);
+		}
+
 		protected function __construct() {
 				$this->addSubmenuEntry();
 				$this->autoloadOption = false;
-				$this->ids = get_option($this->optionName, []);
+				$this->ids = $this->getPostsInQueue();
+		}
+
+		public function getStatusUrl() {
+				return admin_url($this->parentSlug.'&page='.$this->menuSlug);
 		}
 
 		public function addSubmenuEntry() {
