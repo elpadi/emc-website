@@ -1,6 +1,8 @@
 <?php
 namespace VimeoUpdater\Admin\Flash;
 
+use VimeoUpdater\Admin\Admin;
+
 class Message {
 
 	public static function info(string $msg) {
@@ -30,6 +32,7 @@ class Message {
 		$this->name = uniqid();
 		Flash::add($this->name);
 		set_transient($this->name, [$msg, $type], HOUR_IN_SECONDS);
+		Admin::log("$type: $msg");
 	}
 
 }
