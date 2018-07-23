@@ -11,5 +11,7 @@ if (!function_exists('add_action')) {
 	die('Where is WordPress??');
 }
 require_once(__DIR__.'/vendor/autoload.php');
+define('VIMEO_VIDEO_UPDATER_FILE', __FILE__);
 define('VIMEO_VIDEO_UPDATER_DIR', __DIR__);
 add_action('admin_init', function() { new VimeoUpdater\Admin\Admin(); });
+
