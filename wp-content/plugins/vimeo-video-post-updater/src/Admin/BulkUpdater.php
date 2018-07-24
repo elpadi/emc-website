@@ -6,53 +6,41 @@ use VimeoUpdater\Queue\Queue;
 
 class BulkUpdater {
 
+	protected static $argName = 'video_ids';
+	protected static $actionName = 'update_vimeo_videos';
+	protected static $screen = 'edit-vimeo-video';
+
+	public static function getActionName() {
+		return static::$actionName;
+	}
+
 	public function __construct() {
-		$this->screen = 'edit-vimeo-video';
-		$this->actionName = 'update_vimeo_videos';
-		$this->transientName = 'vimeo_updater_added_ids';
-		add_filter('bulk_actions-'.$this->screen, [$this, 'menuItemFilter']);
-		add_filter('handle_bulk_actions-'.$this->screen, [$this, 'action'], 10, 3 );
-		add_action('admin_notices', [$this, 'notice']);
-	}
-
-	protected function getSelectedPostsDisplay($ids) {
-		$ids = array_diff($ids, Queue::create()->getPostsInQueue());
-		if (empty($ids)) return __('No new posts');
-		$posts = VimeoUpdater::getVideoPosts($ids);
-		return count($posts).__(' posts ').implode(' ', array_map(function($p) {
-			return sprintf('<pre>%s (ID: %d)</pre>', $p->post_name, $p->ID);
-		}, $posts));
-	}
-
-	public function notice() {
-		if (!empty($_REQUEST[$this->actionName])) {
-			$ids = get_transient($this->transientName);
-			if ($ids !== false) {
-				$selected = $this->getSelectedPostsDisplay($ids);
-			}
-			else $selected = __('The selected posts');
-			$queue_url = Queue::create()->getStatusUrl();
-			include(VIMEO_VIDEO_UPDATER_DIR.'/templates/bulk-updater-notice.php');
-		}
+		add_filter('bulk_actions-'.static::$screen, [$this, 'menuItemFilter']);
+		add_filter('handle_bulk_actions-'.static::$screen, [$this, 'action'], 10, 3 );
+		add_action('admin_notices', [$this, 'notices']);
 	}
 
 	public function menuItemFilter($items) {
-		$items[$this->actionName] = __('Update Info From Vimeo', 'video_updater');
+		$items[static::$actionName] = __('Update Info From Vimeo');
 		return $items;
 	}
 
 	public function action($redirect_to, $doaction, $post_ids) {
-		if ($doaction !== $this->actionName) {
+		if ($doaction !== static::$actionName) {
 			return $redirect_to;
 		}
-		Queue::add($post_ids);
-		set_transient($this->transientName, $post_ids, MINUTE_IN_SECONDS);
-		$redirect_to = add_query_arg($this->actionName, 'added', $redirect_to);
+		set_transient(static::$actionName, $post_ids, 0);
+		$redirect_to = add_query_arg(static::$argName, implode('-', $post_ids), $redirect_to);
 		return $redirect_to;
 	}
 
-	public function metaBoxes() {
-		$this->postMetaBox = new PostMetaBox();
+	public function notices() {
+		if (isset($_REQUEST[static::$argName])) {
+			$ids = explode('-', $_REQUEST[static::$argName]);
+			foreach ($ids as $id) 
+				Admin::$logger->success("The ID $id was added to the update queue.");
+			Admin::$logger->info(sprintf('<a href="%s">%s</a>', Queue::getStatusUrl(), __('Process the Vimeo update queue')));
+		}
 	}
 
 }

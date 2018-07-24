@@ -15,8 +15,3 @@ define('VIMEO_VIDEO_UPDATER_FILE', __FILE__);
 define('VIMEO_VIDEO_UPDATER_DIR', __DIR__);
 if (is_admin()) add_action('init', function() { new VimeoUpdater\Admin\Admin(); });
 
-function vimeo_queue_cron_handler() {
-	$queue = VimeoUpdater\Queue\Queue::create();
-	$queue->next();
-}
-add_action('update_next_vimeo_video', 'vimeo_queue_cron_handler');
