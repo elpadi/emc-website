@@ -80,12 +80,16 @@ body div#navContainer.expanded {
 */
 
 #mainContainer {
-	margin-top: 0;
-	width: calc(100vw - 410px);
+	min-width: auto;
 	max-width: 900px;
-	margin-right: 80px;
+	margin: 0 80px 0 auto;
 	opacity: 0;
 	transition: opacity 2s;
+}
+@media (min-width: 790px) {
+	#mainContainer {
+		width: calc(100vw - 410px);
+	}
 }
 body.page-loaded #mainContainer {
 	opacity: 1;
@@ -208,6 +212,7 @@ body div#navContainer {
 html > body {
 	background: none #fff;
 	min-height: 100vh;
+	height: auto;
 }
 body div#navContainer, #scroll-button { z-index: 900; }
 body div#mainContainer { z-index: 850; position: relative; }
@@ -283,7 +288,32 @@ body > .backgroundvimeo > iframe.visible {
 .video-listing > main {
 	display: grid;
 	grid-gap: 48px 24px;
-	grid-template-columns: repeat(2, minmax(100px, 2fr));
+	grid-template-columns: minmax(100px, 1fr);
+}
+@media (min-width: 420px) {
+	.video-listing > main {
+		grid-template-columns: repeat(2, minmax(100px, 1fr));
+	}
+}
+@media (min-width: 640px) {
+	.video-listing > main {
+		grid-template-columns: repeat(3, minmax(100px, 1fr));
+	}
+}
+@media (min-width: 790px) {
+	.video-listing > main {
+		grid-template-columns: repeat(2, minmax(100px, 1fr));
+	}
+}
+@media (min-width: 1080px) {
+	.video-listing > main {
+		grid-template-columns: repeat(3, minmax(100px, 1fr));
+	}
+}
+@media (min-width: 1280px) {
+	.video-listing > main {
+		grid-template-columns: repeat(4, minmax(100px, 1fr));
+	}
 }
 .video-listing article {
 	position: relative;
