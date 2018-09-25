@@ -81,11 +81,14 @@ body div#navContainer.expanded {
 
 #mainContainer {
 	min-width: auto;
-	max-width: 900px;
 	margin: 0 80px 0 auto;
 	opacity: 0;
 	transition: opacity 2s;
 }
+body:not(.page-template-video-section) #mainContainer {
+	max-width: 900px;
+}
+
 @media (min-width: 790px) {
 	#mainContainer {
 		width: calc(100vw - 410px);
@@ -315,6 +318,11 @@ body > .backgroundvimeo > iframe.visible {
 		grid-template-columns: repeat(4, minmax(100px, 1fr));
 	}
 }
+@media (min-width: 1960px) {
+	.video-listing > main {
+		grid-template-columns: repeat(5, minmax(100px, 1fr));
+	}
+}
 .video-listing article {
 	position: relative;
 }
@@ -403,7 +411,7 @@ button.radio.selected::before {
 }
 
 @media (min-width: 1200px) {
-	body div#navContainer {
+	body:not(.page-template-video-section) div#navContainer {
 		left: auto;
 		right: calc(50% + 450px);
 		margin-right: -100px;
