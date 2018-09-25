@@ -26,25 +26,33 @@ var EMC_Listing = (function($) {
 		Object.keys(allTags).sort().forEach(function(t) {
 			container.allTags[t] = true;
 		});
+		var buttons = getListingTags(container).map(createTagButton);
+		container.tagButtons = {};
+		buttons.forEach(function(b) { container.tagButtons[b.innerHTML] = b; });
 		$(container).find('form')
-			.append($(getListingTags(container).map(createTagButton)))
+			.append($(buttons))
 			.on('click', 'button', function(e) {
 				var b = this;
 				e.preventDefault();
-				b.classList.toggle('selected');
 				if (b.innerHTML in container.selectedTags) {
 					delete container.selectedTags[b.innerHTML];
 				}
 				else {
 					container.selectedTags[b.innerHTML] = true;
 				}
-				updateLocationHash(getEnabledTags(container));
+				updateLocationHash(getEnabledTags(container), container);
 		});
 		f.addEventListener('submit', function(e) {
 			e.preventDefault();
 		});
-		window.addEventListener("hashchange", function() { onHashChange(container); });
+		window.addEventListener("hashchange", function() {
+			onHashChange(container);
+		});
 		onHashChange(container);
+	};
+	var updateSelectedButtons = function(container, tags) {
+		for (var t in container.tagButtons)
+			container.tagButtons[t].classList.toggle('selected', tags.indexOf(t) != -1); 
 	};
 	var getListingItems = function(container) {
 		return Array.from(container.getElementsByTagName('article'));
@@ -61,11 +69,20 @@ var EMC_Listing = (function($) {
 	var clearTags = function(container) {
 		return getTagButtons(container).forEach(n => n.classList.remove('selected'));
 	};
-	var updateLocationHash = function(tags) {
+	var pushState = function(container, url) {
+		history.pushState(null, null, url);
+		onHashChange(container);
+	};
+	var updateLocationHash = function(tags, container) {
 		if (tags.length > 0) {
-			location.hash = '#' + encodeURIComponent(tags.join(TAGS_HASH_DELIMETER));
+			var hash = '#' + encodeURIComponent(tags.join(TAGS_HASH_DELIMETER));
+			if ('pushState' in history) pushState(container, hash);
+			else location.hash = hash;
 		}
-		else location.hash = '';
+		else {
+			if ('pushState' in history) pushState(container, location.pathname);
+			else location.hash = '';
+		}
 	};
 	var onHashChange = function(container) {
 		console.log('EMC_Listing.onHashChange', location.hash);
@@ -88,6 +105,7 @@ var EMC_Listing = (function($) {
 			let tagsInItem = tags.filter(t => JSON.parse(n.dataset.tags).includes(t));
 			n.classList[tagsInItem.length ? 'remove' : 'add']('disabled');
 		});
+		updateSelectedButtons(container, tags);
 	};
 	return function initVideoListing() {
 		Array.from(document.getElementsByClassName('video-listing')).forEach(setup);
