@@ -11,7 +11,7 @@
 				<a href="<?php the_permalink(); ?>"><?php echo get_the_post_thumbnail($video_post, 'large'); ?></a>
 				<h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 			</header>
-			<main><?php the_excerpt(); ?></main>
+			<main><?= apply_filters('the_content', $video_post->post_content); ?></main>
 		</article>
 		<?php endwhile; ?>
 	</main>

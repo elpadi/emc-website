@@ -329,27 +329,6 @@ body > .backgroundvimeo > iframe.visible {
 .video-listing article.disabled {
 	display: none;
 }
-.video-listing article > main {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: calc(100% - 3.2em);
-	padding: 12px;
-	opacity: 0;
-	transition: opacity 0.3s;
-	pointer-events: none;
-	display: flex;
-	align-items: center;
-}
-.video-listing article header:hover + main {
-	opacity: 1;
-}
-
-.video-listing main p {
-	color: white !important;
-	margin: 0;
-}
 .video-listing header > a {
 	display: block;
 	background-color: black;
