@@ -49,6 +49,13 @@ var EMC_Listing = (function($) {
 			onHashChange(container);
 		});
 		onHashChange(container);
+		$('.accordion--content').each(function(i, el) {
+			var c = $(el);
+			setTimeout(function() {
+				c.add(c.parent('.accordion')).add(c.prev('.accordion')).addClass('accordion--init');
+			}, 100);
+			el.style.height = el.offsetHeight + 'px';
+		});
 	};
 	var updateSelectedButtons = function(container, tags) {
 		for (var t in container.tagButtons)

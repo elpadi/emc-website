@@ -269,6 +269,9 @@ body > .backgroundvimeo > iframe.visible {
 	text-decoration: underline;
 }
 
+.page-template-video-section .page_content > p {
+	display: none;
+}
 .video-listing {
 	margin-bottom: 48px;
 }

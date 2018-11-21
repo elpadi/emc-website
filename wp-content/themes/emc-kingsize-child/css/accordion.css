@@ -1,0 +1,26 @@
+.accordion-toggler {
+	cursor: pointer;
+}
+.accordion-toggler::after {
+	content: ' + ';
+}
+.accordion.open .accordion-toggler::after,
+.accordion-toggler.open::after {
+	content: ' – ';
+}
+.accordion--content {
+	overflow: hidden;
+	filter: opacity(0.99);
+	transition: filter 0.1s linear 0.1s, height 0.2s;
+}
+.accordion:not(.open) .accordion--content.accordion--init,
+.accordion:not(.open) + .accordion--content.accordion--init {
+	height: 1px !important;
+	filter: opacity(0.01);
+	transition: filter 0.1s linear, height 0.1s 0.1s;
+}
+.accordion--content:not(.accordion--init) {
+	position: absolute;
+	visibility: hidden;
+	height: auto !important;
+}

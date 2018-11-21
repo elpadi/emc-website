@@ -1,7 +1,8 @@
 <?php global $video_query; if ($video_query->have_posts()):
 ?><section class="video-listing">
 	<header>
-		<form method="GET" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
+		<h3 class="accordion accordion-toggler">Filter By Tags</h3>
+		<form class="accordion--content" method="GET" action="<?php echo $_SERVER['REQUEST_URI']; ?>">
 		</form>
 	</header>
 	<main>
