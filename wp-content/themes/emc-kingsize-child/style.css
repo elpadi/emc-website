@@ -406,7 +406,6 @@ button.radio.selected::before {
 	}
 	#mainContainer {
 		margin-right: auto;
-		left: 140px;
 	}
 }
 
@@ -423,7 +422,7 @@ button.radio.selected::before {
 @media (min-width: 790px) {
 	#mainContainer {
 		width: calc(100vw - 410px);
-		margin: 0 80px 0 auto;
+		left: 140px;
 	}
 	.page-template-default #mainContainer,
 	.page-template-map #mainContainer,
@@ -440,6 +439,9 @@ button.radio.selected::before {
 		width: 177.77777778vh;
 		min-height: 100%;
 		min-width: 100%;
+	}
+	#navArrowImg path {
+		fill: rgba(255,255,255,0.8);
 	}
 }
 
