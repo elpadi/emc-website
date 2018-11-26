@@ -81,7 +81,7 @@ body div#navContainer.expanded {
 
 #mainContainer {
 	min-width: auto;
-	margin: 0 80px 0 auto;
+	margin: 0 auto;
 	opacity: 0;
 	transition: opacity 2s;
 }
@@ -89,19 +89,8 @@ body:not(.page-template-video-section) #mainContainer {
 	max-width: 900px;
 }
 
-@media (min-width: 790px) {
-	#mainContainer {
-		width: calc(100vw - 410px);
-	}
-}
 body.page-loaded #mainContainer {
 	opacity: 1;
-}
-.page-template-default #mainContainer,
-.page-template-map #mainContainer,
-.page-template-video-section #mainContainer {
-	margin-top: 100vh;
-	background: rgba(255,255,255,0) !important;
 }
 /*
 .page-template-map.scroll-top #mainContainer .container, .page-template-video-section.scroll-top #mainContainer .container {
@@ -115,7 +104,6 @@ body.page-loaded #mainContainer {
 	opacity: 0;
 }
 */
-.page-template-video #mainContainer { margin-top: 100vh; }
 
 body.no-content #mainContainer,
 .visuallyhidden {
@@ -183,11 +171,8 @@ body div#navContainer {
 #arrowLink {
 	top: 23px;
 }
-#navArrowImg svg {
-	opacity: 0.8;
-}
 #navArrowImg path {
-	fill: #fff;
+	fill: #dedede;
 }
 #navContainer #mainNavigation .sub-menu {
 	position: static;
@@ -210,6 +195,34 @@ body div#navContainer {
 	max-width: none;
 	text-transform: none;
 	font-size: 1.3em !important;
+}
+
+.top-bar #cssmenu > ul > li > a,
+.top-bar #cssmenu > ul > li > a > span,
+nav.top-bar ul li.toggle-topbar:hover,
+nav.top-bar {
+	background: #dedede none;
+	color: black;
+}
+nav.top-bar {
+	position: absolute;
+	top: 0;
+}
+
+.top-bar .name img {
+	display: none;
+}
+nav.top-bar ul li.name {
+	background: transparent url(img/h_logo.png) 15px center no-repeat;
+	background-size: auto 70%;
+	width: 60px;
+}
+nav.top-bar ul li.toggle-topbar a {
+	border-color: #fd2323 transparent transparent transparent;
+	transition: border-color 0.2s linear;
+}
+nav.top-bar.expanded ul li.toggle-topbar a {
+	border-color: transparent transparent #fd2323 transparent;
 }
 
 html > body {
@@ -235,13 +248,6 @@ body > .backgroundvimeo {
 body > .backgroundvimeo > iframe {
 	background-color: white;
 	height: 56.25vw;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	position: absolute;
-	width: 177.77777778vh;
-	min-height: 100%;
-	min-width: 100%;
 	visibility: hidden;
 	opacity: 0;
 	transition: visibility 0s, opacity 0.5s;
@@ -403,6 +409,40 @@ button.radio.selected::before {
 		left: 140px;
 	}
 }
+
+
+@media (max-width: 789px) {
+	body {
+		padding-top: 45px;
+	}
+	body > .backgroundvimeo {
+		position: static;
+		height: auto;
+	}
+}
+@media (min-width: 790px) {
+	#mainContainer {
+		width: calc(100vw - 410px);
+		margin: 0 80px 0 auto;
+	}
+	.page-template-default #mainContainer,
+	.page-template-map #mainContainer,
+	.page-template-video-section #mainContainer {
+		margin-top: 100vh;
+		background: rgba(255,255,255,0) !important;
+	}
+	.page-template-video #mainContainer { margin-top: 100vh; }
+	body > .backgroundvimeo > iframe {
+		left: 50%;
+		top: 50%;
+		transform: translate(-50%, -50%);
+		position: absolute;
+		width: 177.77777778vh;
+		min-height: 100%;
+		min-width: 100%;
+	}
+}
+
 
 /*Lex's CSS*/
 

@@ -63,15 +63,21 @@ var EMC_ContentScroll = (function($) {
 		return templates.some(t => classes.contains(t));
 	};
 	return function initContentScroll() {
+		var disabled = window.innerWidth < 790;
 		$(window).load(function() {	
 			setTimeout(function() {
 				initVideo(document.querySelector('.backgroundvimeo'));
 				document.body.classList.add('page-loaded');
+				if (disabled) return;
 				if (isScrollingTemplate()) {
 					document.getElementById('navContainer').classList.add('expanded');
 					if (window.scrollY < window.innerHeight) window.scrollTo(0, window.innerHeight);
 				}
 			}, 1000);
+			if (disabled) {
+				$('iframe').addClass('visible');
+				return;
+			}
 			$(document.body).toggleClass('scroll-top', window.scrollY == 0);
 			document.getElementById('scroll-button').addEventListener('click', function(e) {
 				Scroll.scrollTo(Scroll.isScrolledTop() ? window.innerHeight : 0);
