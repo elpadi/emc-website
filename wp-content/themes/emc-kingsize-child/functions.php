@@ -15,36 +15,33 @@ add_action( 'wp_enqueue_scripts', function() {
 	foreach (KingSize_Theme::$styles as $css) {
 		wp_enqueue_style('kingsize-'.basename($css), get_template_directory_uri() . "/css/$css.css", [], '1.0.0' );
 	}
-	$assets_version = '1.2.0';
 	// add kingsize main css file
 	wp_enqueue_style( 'parent-style', get_template_directory_uri() . '/style.css' );
-	wp_enqueue_style( 'emc-accordion', get_stylesheet_directory_uri() . '/css/accordion.css', $assets_version );
-	// add our own main css file
-	wp_enqueue_style( 'emc-style', get_stylesheet_directory_uri() . '/style.css', $assets_version );
 
 	wp_enqueue_script('foundation');
-	wp_register_script('vimeo', "https://player.vimeo.com/api/player.js");
-	wp_register_script('emc-accordion', get_stylesheet_directory_uri() . "/js/accordion.js", ['jquery'], $assets_version);
-	wp_register_script('emc-forms', get_stylesheet_directory_uri() . "/js/forms.js", ['jquery'], $assets_version);
-	wp_register_script('emc-nav', get_stylesheet_directory_uri() . "/js/nav.js", ['jquery'], $assets_version);
-	wp_register_script('emc-listing', get_stylesheet_directory_uri() . "/js/listing.js", ['jquery'], $assets_version);
-	wp_register_script('emc-scroll', get_stylesheet_directory_uri() . "/js/content-scroll.js", ['jquery'], $assets_version);
-	/*
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/style.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/custom.css">
-    <link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/mobile_navigation.css" type="text/css" />
-  	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/font-awesome/css/font-awesome.min.css">
-	 <!-- Attach the Table CSS and Javascript -->
-	<link rel="stylesheet" href="<?php echo get_template_directory_uri();?>/css/responsive-tables.css">
-	<script src="<?php echo get_template_directory_uri();?>/js/responsive-tables.js" type="text/javascript" ></script>
-	<script type="text/javascript" src="https://f.vimeocdn.com/js/froogaloop2.min.js"></script>
-	 */
+	wp_enqueue_script('vimeo', "https://player.vimeo.com/api/player.js");
+
+	if (is_front_page()) {
+		wp_enqueue_script('wp-api');
+	}
 
 	// remove kingsize js
 	wp_dequeue_script('custom');
-	// add our modified version of kingsize custom
-	wp_enqueue_script('emc-custom', get_stylesheet_directory_uri() . "/js/custom.js", ['vimeo','emc-accordion','emc-forms','emc-nav','emc-scroll','emc-listing'], $assets_version);
-	
+
+	$theme_dir = get_stylesheet_directory();
+	$theme_uri = get_stylesheet_directory_uri();
+
+	foreach (glob("$theme_dir/css/*.css") as $f) {
+		$h = 'emc-'.basename($f, '.css');
+		wp_enqueue_style($h, "$theme_uri/css/".basename($f), [], filemtime($f));
+	}
+	wp_enqueue_style('emc-style', "$theme_uri/style.css", [], filemtime("$theme_dir/style.css"));
+
+	foreach (glob("$theme_dir/js/*.js") as $f) {
+		$h = 'emc-'.basename($f, '.js');
+		wp_enqueue_script($h, "$theme_uri/js/".basename($f), [], filemtime($f));
+	}
+
 	if(is_singular()) wp_enqueue_script('comment-reply');
 });
 

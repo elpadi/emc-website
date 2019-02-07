@@ -105,6 +105,9 @@ body.page-loaded #mainContainer {
 }
 */
 
+body.no-content {
+	overflow: hidden;
+}
 body.no-content #mainContainer,
 .visuallyhidden {
     border: 0;
