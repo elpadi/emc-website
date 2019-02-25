@@ -221,11 +221,12 @@ nav.top-bar ul li.name {
 	width: 60px;
 }
 nav.top-bar ul li.toggle-topbar a {
-	border-color: #fd2323 transparent transparent transparent;
-	transition: border-color 0.2s linear;
-}
-nav.top-bar.expanded ul li.toggle-topbar a {
-	border-color: transparent transparent #fd2323 transparent;
+	border-style: none !important;
+	width: 45px !important;
+	height: 45px !important;
+	background: transparent url(svg/menu.svg?v=2) center center no-repeat / 79%; 
+	position: static;
+	margin: 0;
 }
 
 html > body {
