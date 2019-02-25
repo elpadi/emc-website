@@ -104,13 +104,6 @@ add_action('wp_footer', function() {
 	}
 });
 
-function _remove_script_version($src) { 
-	$parts = explode('?', $src); 	
-	return $parts[0] . '?v=' . time(); 
-} 
-add_filter( 'script_loader_src', '_remove_script_version', 15, 1 ); 
-add_filter( 'style_loader_src', '_remove_script_version', 15, 1 );
-
 add_filter('body_class', function($classes) {
 	global $post;
 	$classes[] = 'scroll-top';
