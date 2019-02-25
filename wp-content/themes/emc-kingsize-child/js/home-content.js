@@ -17,7 +17,7 @@ var EMC_Home_Content = (function($) {
 
 				b.classList.remove('no-content');
 				b.classList.remove('body_hiding_content');
-				$('.title-page').html(_p.title.rendered);
+				$('h2.title-page').html(_p.title.rendered);
 				$('.page_content').html(_p.content.rendered);
 			});
 		}

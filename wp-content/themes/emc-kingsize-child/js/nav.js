@@ -20,8 +20,14 @@ var EMC_Nav = (function($) {
 			});
 			//}
 			$(this).removeClass('mainNav');
-			$(this).children('li a').each(function(i){
-				$(this).html('<span>'+$(this).children('h5').text()+'</span>');
+			// swap h5 tags for span
+			$(this).children('li a').each(function(i, el){
+				var h5 = el.children[0];
+				var sp = document.createElement('span');
+				if (h5.nodeName == 'H5') {
+					sp.innerHTML = el.children[0].innerHTML;
+					el.replaceChild(sp, h5);
+				}
 			});
 			
 			
