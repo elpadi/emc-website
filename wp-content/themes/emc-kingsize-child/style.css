@@ -257,6 +257,10 @@ body > .backgroundvimeo > iframe.visible {
 	opacity: 1;
 }
 
+body.home .video-js .vjs-tech {
+	object-fit: cover;
+}
+
 #mainContainer h3,
 #mainContainer h2.title-page {
 	color: black;
