@@ -6,7 +6,8 @@
 global $get_options,$data,$tpl_body_id;
 $get_options = get_option('wm_theme_settings');
 ###############################
-?><html class="no-js" <?php language_attributes(); ?>>
+?>
+<html class="no-js" <?php language_attributes(); ?>>
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
