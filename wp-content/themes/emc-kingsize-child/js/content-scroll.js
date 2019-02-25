@@ -7,18 +7,30 @@
  * scroll position.
  */
 var EMC_ContentScroll = (function($) {
+
 	var Video, Scroll;
+
 	var initVideo = function(videoContainer) {
+
 		if (!videoContainer || !videoContainer.children.length) return;
-		var iframe = videoContainer && videoContainer.children.length ? videoContainer.children[0] : null;
+
+		var iframe = videoContainer && videoContainer.children.length && videoContainer.children[0].nodeName == 'IFRAME' ? videoContainer.children[0] : null;
 		var isPlaying,
-			play = function() { isPlaying !== true && iframe && (new Vimeo.Player(iframe)).play(); isPlaying = true; },
-			pause = function() { isPlaying !== false && iframe && (new Vimeo.Player(iframe)).pause(); isPlaying = false; };
-		Video = { play: play, pause: pause, iframe: iframe };
+			lang = document.documentElement.lang;
+
+		Video = iframe ? {
+			play: function() { isPlaying !== true && iframe && (new Vimeo.Player(iframe)).play(); isPlaying = true; },
+			pause: function() { isPlaying !== false && iframe && (new Vimeo.Player(iframe)).pause(); isPlaying = false; },
+			subs: function() { (new Vimeo.Player(iframe)).enableTextTrack(lang); },
+			iframe: iframe
+		} : null;
+
 		if (iframe && location.pathname === '/') {
 			(new Vimeo.Player(iframe)).on('ended', function() { location = location.href + 'our-project'; });
 		}
+
 	};
+
 	var initScroll = function() {
 		var wasScrolledTop;
 		var onScrollDown = function() {
@@ -47,7 +59,7 @@ var EMC_ContentScroll = (function($) {
 			Video && Video.iframe.classList.add('visible');
 			if (wasScrolledTop !== true && isScrolledTop()) {
 				if (window.scrollY) scrollTo(0);
-				Video && Video.play();
+				if (Video) { Video.play(); Video.subs(); }
 			}
 			else {
 				Video && Video.pause();
