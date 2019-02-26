@@ -25,10 +25,6 @@ var EMC_ContentScroll = (function($) {
 			iframe: iframe
 		} : null;
 
-		if (iframe && location.pathname === '/') {
-			(new Vimeo.Player(iframe)).on('ended', function() { location = location.href + 'our-project'; });
-		}
-
 	};
 
 	var initScroll = function() {

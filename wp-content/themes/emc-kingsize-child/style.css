@@ -143,6 +143,8 @@ body.scroll-top #mainContainer .container {
 body div#navContainer {
 	padding: 0;
 	left: 32px;
+	width: 31%;
+	max-width: 248px;
 }
 #navContainer #bgRepeat {
 	background-color: rgba(255,255,255,0.8) !important;
@@ -208,8 +210,16 @@ nav.top-bar {
 	color: black;
 }
 nav.top-bar {
-	position: absolute;
+	position: fixed;
 	top: 0;
+}
+.admin-bar nav.top-bar {
+	top: 32px;
+}
+@media screen and (max-width: 782px) {
+	.admin-bar nav.top-bar {
+		top: 46px;
+	}
 }
 
 .top-bar .name img {
@@ -220,6 +230,16 @@ nav.top-bar ul li.name {
 	background-size: auto 70%;
 	width: 60px;
 }
+/*
+nav.top-bar ul li.toggle-topbar a {
+	border-style: none !important;
+	width: 45px !important;
+	height: 45px !important;
+	background: transparent url(svg/menu.svg?v=2) center center no-repeat / 79%; 
+	position: static;
+	margin: 0;
+}
+*/
 nav.top-bar ul li.toggle-topbar a {
 	border-style: none !important;
 	width: 45px !important;
@@ -477,3 +497,4 @@ button.radio.selected::before {
 .accordion_head .interactive {color: #ee3a39!important;}
 .accordion div.accordion_head.active_acc a{background-color: #fff!important;}
 .accordion div{background-color: #fff!important; color: #ee3a39!important; border: none!important; border-bottom: 1px solid #000!important; }
+
