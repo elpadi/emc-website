@@ -20,6 +20,27 @@ $get_options = get_option('wm_theme_settings');
 	<?php require(get_template_directory() . '/js/custom.php'); ?>
 
 	<?php wp_head(); ?>
+
+	<meta property="og:title" content="<?= is_front_page() ? get_bloginfo('name') : get_the_title(); ?>">
+	<meta property="og:type" content="website">
+	<meta  property="twitter:site" content="@ecologiesofcare">
+	<?php
+	if (($bg = get_post_meta($wp_query->post->ID, 'kingsize_post_background', true)) || ($bg = get_post_meta($wp_query->post->ID, 'kingsize_page_background', true)))
+		printf('<meta property="og:image" content="%s">', $bg) &&
+		printf('<meta property="twitter:image" content="%s">', $bg);
+	elseif (get_post_meta($wp_query->post->ID, 'kingsize_post_background_slider_id', true ) || get_post_meta($wp_query->post->ID, 'kingsize_page_background_slider_id', true ))
+		printf('<meta property="og:image" content="%s">', $data['wm_background_image']) &&
+		printf('<meta property="twitter:image" content="%s">', $data['wm_background_image']);
+	elseif (is_front_page())
+		printf('<meta property="og:image" content="%s/img/home_bg.jpg">', get_stylesheet_directory_uri()) &&
+		printf('<meta property="twitter:image" content="%s/img/home_bg.jpg">', get_stylesheet_directory_uri());
+	elseif (($video_post = get_field('vimeo_video_post')) && ($thumb_id = get_post_thumbnail_id($video_post)) && ($thumb_src = wp_get_attachment_image_src($thumb_id, 'large')))
+		printf('<meta property="og:image" content="%s">', $thumb_src[0]) &&
+		printf('<meta property="twitter:image" content="%s">', $thumb_src[0]);
+	elseif (($thumb_id = get_post_thumbnail_id($wp_query->post->ID)) && ($thumb_src = wp_get_attachment_image_src($thumb_id, 'large')))
+		printf('<meta property="og:image" content="%s">', $thumb_src[0]) &&
+		printf('<meta property="twitter:image" content="%s">', $thumb_src[0]);
+	?>
 	
 	<!-- Theme setting head include wp admin -->
 	<?php
