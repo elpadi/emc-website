@@ -17,3 +17,6 @@ wp-content/plugins/*
 wp-content/themes/kingsize
 
 wp
+wp-content/themes/emc-kingsize-child/svg/social/
+wp-content/themes/emc-kingsize-child/img/home*
+wp-config.common.php

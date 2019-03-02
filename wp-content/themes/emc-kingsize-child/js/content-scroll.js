@@ -49,7 +49,9 @@ var EMC_ContentScroll = (function($) {
 			if (wasScrolledTop !== false && !isScrolledTop()) onScrollDown();
 		};
 		var scrollTo = function(y) {
-			window[('smoothScrollTo' in window) ? 'smoothScrollTo' : 'scrollTo'](0, y);
+			('smoothScrollTo' in window) ? smoothScrollTo(0, y) : window.scroll({
+				top: y, left: 0, behavior: 'smooth'
+			});
 		};
 		setTimeout(function() {
 			Video && Video.iframe.classList.add('visible');

@@ -265,4 +265,9 @@
 		}; // END init object
 		for (let initFn in init) init[initFn].call(this);
 	});
+
+	window.addEventListener('load', function() {
+		let mc = $('#mainContainer');
+		mc.css({ minHeight: (window.innerHeight - mc.position().top) + 'px' });
+	});
 })(jQuery);

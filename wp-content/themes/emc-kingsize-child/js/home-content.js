@@ -5,12 +5,17 @@ var EMC_Home_Content = (function($) {
 		return $.get(base + end, fn);
 	};
 
-	let showContent = function(b, p) {
+	let scrollContent = function() {
+		var y = window.innerHeight * 0.9;
+		('smoothScrollTo' in window) ? smoothScrollTo(0, y) : window.scroll({
+			top: y, left: 0, behavior: 'smooth'
+		});
+	};
+
+	let showContent = function() {
+		let b = document.body;
 		b.classList.remove('no-content');
 		b.classList.remove('body_hiding_content');
-		$('h2.title-page').html(p.title.rendered);
-		$('.page_content').html(p.content.rendered);
-		document.querySelector('video').currentTime = 2;
 	};
 
 	/**
@@ -20,14 +25,17 @@ var EMC_Home_Content = (function($) {
 		let b = document.body;
 
 		let isHome = b.classList.contains('home');
-		let isShowingContent = isHome && (window.innerWidth / window.innerHeight < 1.5);
+		let isShowingContent = isHome && document.querySelector('.backgroundvimeo').childElementCount == 0;
 
-		isHome && apiFetch('pages?slug=our-project', p => {
-			if (p.length == 0) return;
-			let show = () => showContent(b, p[0]);
+		if (isShowingContent) {
+			showContent();
+			if (document.getElementById('mainContainer').offsetTop == window.innerHeight) setTimeout(scrollContent, 2000);
+		}
+		else $('video').on('ended', showContent);
 
-			if (isShowingContent) show();
-			else $('video').on('ended', show);
+		$('video').on('ended', function() {
+			document.querySelector('.backgroundvimeo').classList.add('show-bg');
+			if (!isShowingContent) setTimeout(scrollContent, 3000);
 		});
 
 	};

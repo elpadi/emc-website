@@ -86,7 +86,7 @@ body div#navContainer.expanded {
 	transition: opacity 2s;
 }
 body:not(.page-template-video-section) #mainContainer {
-	max-width: 900px;
+	max-width: 1010px;
 }
 
 body.page-loaded #mainContainer {
@@ -253,10 +253,14 @@ html > body {
 	background: none #fff;
 	min-height: 100vh;
 	height: auto;
+	scroll-behavior: smooth;
 }
 body div#navContainer, #scroll-button { z-index: 900; }
 body div#mainContainer { z-index: 850; position: relative; }
-body > .grid { z-index: 800; pointer-events: none; }
+body > .grid { display: none; }
+@media (min-width: 768px) {
+	body > .grid { z-index: 800; pointer-events: none; display: block; }
+}
 
 body > .backgroundmap {
 	position: fixed;
@@ -267,6 +271,7 @@ body > .backgroundmap {
 	overflow: hidden;
 }
 body > .backgroundvimeo {
+	background-color: white;
     overflow: hidden;
 }
 body > .backgroundvimeo > iframe {
@@ -281,8 +286,32 @@ body > .backgroundvimeo > iframe.visible {
 	opacity: 1;
 }
 
-body.home .video-js .vjs-tech {
+body.home .backgroundvimeo:empty {
+	height: 100vh;
+}
+body.home .backgroundvimeo.show-bg {
+	background: white url(img/home_bg--mp.jpg) 80% center no-repeat / cover;
+}
+@media (min-aspect-ratio: 3/2) {
+	body.home .backgroundvimeo.show-bg {
+		background-image: url(img/home_bg--ml.jpg);
+	}
+}
+@media (min-width: 980px) {
+	body.home .backgroundvimeo.show-bg {
+		background-image: url(img/home_bg.jpg);
+	}
+}
+body.home .backgroundvimeo > div {
+	background-color: white;
+	transition: opacity 1.5s linear 1s;
+}
+body.home .backgroundvimeo.show-bg > div {
+	opacity: 0;
+}
+body.home .vjs-tech {
 	object-fit: cover;
+	background-color: white;
 }
 
 #mainContainer h3,
@@ -301,6 +330,10 @@ body.home .video-js .vjs-tech {
 #mainContainer a:hover {
 	color: #d2d2d2;
 	text-decoration: underline;
+}
+
+#mainContainer .password-protected {
+	display: none;
 }
 
 .page-template-video-section .page_content > p {
@@ -418,6 +451,41 @@ button.radio.selected::before {
 }
 */
 
+#mainContainer .header > div {
+	position: relative;
+	max-width: calc(100% - 100px);
+}
+.sharing-buttons {
+	position: absolute;
+	bottom: 23px;
+	right: -108px;
+}
+.sharing-buttons ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+.sharing-buttons a {
+	display: block;
+}
+.sharing-buttons svg {
+	height: 3.5em;
+	padding: 0.4em;
+	margin: 0 0.3em;
+}
+.sharing-buttons path {
+	fill: #ee3a39;
+	transition: fill 0.2s linear;
+}
+/*
+.sharing-buttons path:hover {
+	fill: black;
+}
+*/
+
 #supersized-loader {
 	display: none !important;
 }
@@ -429,7 +497,7 @@ button.radio.selected::before {
 @media (min-width: 1200px) {
 	body:not(.page-template-video-section) div#navContainer {
 		left: auto;
-		right: calc(50% + 450px);
+		right: calc(50% + 500px);
 		margin-right: -100px;
 	}
 	#mainContainer {
