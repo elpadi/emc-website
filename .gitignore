@@ -20,3 +20,4 @@ wp
 wp-content/themes/emc-kingsize-child/svg/social/
 wp-content/themes/emc-kingsize-child/img/home*
 wp-config.common.php
+wp-content/remote-plugins/
